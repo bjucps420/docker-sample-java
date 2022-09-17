@@ -10,3 +10,4 @@ jobs:
                 node-version: 16
             - run: cd frontend && npm install
             - run: cd frontend && npm run generate
+    
