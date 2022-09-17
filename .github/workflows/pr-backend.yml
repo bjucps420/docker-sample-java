@@ -20,5 +20,5 @@ jobs:
                   distribution: 'zulu'
                   java-version: '17'
                   cache: 'maven'
-            - run: mvn clean install
+            - run: cd backend && mvn clean install
                 

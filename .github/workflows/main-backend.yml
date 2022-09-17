@@ -36,7 +36,7 @@ jobs:
             - uses: actions/download-artifact@v2
               with:
                 name: jar
-            - run: mv todos-0.0.1-SNAPSHOT.jar backend/target
+            - run: mv todos-0.0.1-SNAPSHOT.jar backend/target/
             - run: cd backend && docker build -t backend .
             - run: docker tag backend registry.digitalocean.com/todos:$GITHUB_SHA
             - name: Install doctl
