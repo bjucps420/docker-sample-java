@@ -30,7 +30,7 @@ jobs:
               with:
                 name: dist
             - run: mv dist.zip frontend/
-            - run: cd frontend && unzip dest.zip -d dist
+            - run: cd frontend && unzip dist.zip -d dist
             - run: cd frontend && docker build -t frontend .
             - run: docker tag frontend registry.digitalocean.com/cps420-todos/frontend:$GITHUB_SHA
             - name: Install doctl
