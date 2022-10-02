@@ -1,7 +1,7 @@
 name: Build Frontend
-on: 
+on:
     push:
-        branches:
+        branch:
             - main
 jobs:
     build:
@@ -25,17 +25,17 @@ jobs:
         runs-on: ubuntu-latest
         needs: build
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v3
             - uses: actions/download-artifact@v2
               with:
                 name: dist
             - run: mv dist.zip frontend/
-            - run: cd frontend && unzip dist.zip -d dist
+            - run: cd frontend && unzip dest.zip -d dist
             - run: cd frontend && docker build -t frontend .
-            - run: docker tag frontend registry.digitalocean.com/todos/frontend:$GITHUB_SHA
+            - run: docker tag frontend registry.digitalocean.com/cps420-todos/frontend:$GITHUB_SHA
             - name: Install doctl
               uses: digitalocean/action-doctl@v2
               with:
                 token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
             - run: doctl registry login
-            - run: docker push registry.digitalocean.com/todos/frontend:$GITHUB_SHA
+            - run: docker push registry.digitalocean.com/cps420-todos/frontend:$GITHUB_SHA
